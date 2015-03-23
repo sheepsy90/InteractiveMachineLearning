@@ -34,7 +34,7 @@ clock = pygame.time.Clock()
 # State Variables
 done = False
 k_mean_started = False
-
+stable = False
 kmeans_state = 0
 
 
@@ -73,7 +73,11 @@ class KMeanStorage():
         return self.centroids#
 
     def set_new_centers(self, new_centroids):
-        self.centroids = new_centroids
+        if str(new_centroids) == str(self.centroids):
+            return True
+        else:
+            self.centroids = new_centroids
+            return False
 
     def kMeans_assignment(self):
         assignments = {}
@@ -107,6 +111,7 @@ while not done:
 
             if event.key == pygame.K_c:
                 k_mean_started = False
+                stable = False
                 kmean_storage.clear()
             if event.key == pygame.K_1:
                 kmean_storage.add_data_point(pos)
@@ -137,11 +142,14 @@ while not done:
             # Move
             assignments = kmean_storage.kMeans_assignment()
             new_centers = {k: mean(v) for k, v in assignments.items()}
-            kmean_storage.set_new_centers(new_centers)
+            stable = kmean_storage.set_new_centers(new_centers)
             kmeans_state = 0
 
-        time.sleep(2)
+        time.sleep(1)
 
+    if stable:
+        text = font.render(str("Stable"), True, WHITE)
+        screen.blit(text, (700,10))
 
     data_pnts = kmean_storage.get_data()
     for pnt in data_pnts:
