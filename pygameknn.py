@@ -1,4 +1,5 @@
 import pygame
+import math
 from knn import KNN
 
 #defining color variables
@@ -79,7 +80,7 @@ while not done:
                 x,y = i+10, j+10
                 result = knn_storage.estimate(current_k, (i, j))
 
-                if result is not None:
+                if result is not None and not math.isnan(result):
                     pygame.draw.circle(screen, colour_by_class[result], (i, j), 1)
 
 
@@ -102,11 +103,12 @@ while not done:
         if result is not None:
             m_label, pnts = result
 
-            for element in pnts:
-                dst, label, tpos = element
-                pygame.draw.line(screen, colour_by_class[label], pos, tpos, 2)
+            if not math.isnan(m_label):
+                for element in pnts:
+                    dst, label, tpos = element
+                    pygame.draw.line(screen, colour_by_class[label], pos, tpos, 2)
 
-            pygame.draw.circle(screen, colour_by_class[m_label], pos, 8)
+                pygame.draw.circle(screen, colour_by_class[m_label], pos, 8)
 
     pygame.display.flip()
     clock.tick(60)
