@@ -26,3 +26,5 @@ Key c: Clear
 = Naive Bayes =
 
 AS KNN
+
+Additionally use the Key p to flicker the borders based on a random number generated absed on the class probabilities 
