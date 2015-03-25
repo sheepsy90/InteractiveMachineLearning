@@ -42,7 +42,10 @@ class NaiveBayes(object):
             for i in range(len(classSummaries)):
                 mean, stdev = classSummaries[i]
                 x = input_vector[i]
-                probabilities[classValue] *= self.calculateProbability(x, mean, stdev)
+                try:
+                    probabilities[classValue] *= self.calculateProbability(x, mean, stdev)
+                except:
+                    probabilities[classValue] *= 0
         return probabilities
 
     def predict(self, input_vector):
