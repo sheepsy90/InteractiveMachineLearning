@@ -48,3 +48,6 @@ class KMeans():
     def calculate_euclidean_distance(self, e1, e2):
         assert len(e1) == len(e2)
         return math.sqrt(sum([(e1[i] - e2[i])**2 for i in range(len(e1))]))
+
+    def can_be_started(self):
+        return len(self.centroids) > 0 and len(self.data_points) > 0

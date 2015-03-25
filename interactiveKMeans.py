@@ -66,7 +66,8 @@ while not done:
                 kmean_storage.add_centroid(pos)
                 break
             if event.key == pygame.K_s:
-                k_mean_started = True
+                if kmean_storage.can_be_started():
+                    k_mean_started = True
                 break
 
     screen.fill(BLACK)
