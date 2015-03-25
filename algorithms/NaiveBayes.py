@@ -51,10 +51,24 @@ class NaiveBayes(object):
     def has_model(self):
         return self.statistical_model is not None
 
-    def predict(self, input_vector):
+    def predict(self, input_vector, probabilistic):
         probs = self.calculate_class_probabilities(input_vector)
         lst = [(k, v) for k, v in probs.items()]
         lst = sorted(lst, key=lambda arg: -arg[1])
+
+        if probabilistic:
+            divisior = math.sqrt(sum([e[1]**2 for e in lst]))
+            if divisior != 0:
+                lst = [[e[0], e[1]/divisior] for e in lst]
+                rnd_nr = random.random()
+                cum = 0
+                for element in lst:
+                    cum += element[1]
+                    if cum > rnd_nr:
+                        return element[0]
+                return lst[-1][0]
+
+        print lst
         return lst[0][0]
 
     def calculateProbability(self, x, mean, stdev):

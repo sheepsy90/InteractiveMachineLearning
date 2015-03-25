@@ -34,6 +34,7 @@ done = False
 naive_bayes_storage = NaiveBayes()
 draw_area = False
 draw_cursor = False
+probabilistic_switch = False
 
 while not done:
     pos = pygame.mouse.get_pos()
@@ -72,6 +73,10 @@ while not done:
                 if naive_bayes_storage.has_model():
                     draw_cursor = not draw_cursor
                 break
+            if event.key == pygame.K_p:
+                if naive_bayes_storage.has_model():
+                    probabilistic_switch = not probabilistic_switch
+                break
 
     screen.fill(BLACK)
 
@@ -79,7 +84,7 @@ while not done:
         for i in range(0, size[0], 20):
             for j in range(0, size[0], 20):
                 x,y = i+10, j+10
-                result = naive_bayes_storage.predict((i, j))
+                result = naive_bayes_storage.predict((i, j), probabilistic=probabilistic_switch)
 
                 if result is not None and not math.isnan(result):
                     pygame.draw.circle(screen, colour_by_class[result], (i, j), 1)
