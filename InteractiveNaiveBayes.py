@@ -65,10 +65,12 @@ while not done:
                 break
 
             if event.key == pygame.K_a:
-                draw_area = not draw_area
+                if naive_bayes_storage.has_model():
+                    draw_area = not draw_area
                 break
             if event.key == pygame.K_l:
-                draw_cursor = not draw_cursor
+                if naive_bayes_storage.has_model():
+                    draw_cursor = not draw_cursor
                 break
 
     screen.fill(BLACK)

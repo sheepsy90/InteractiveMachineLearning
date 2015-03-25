@@ -48,6 +48,9 @@ class NaiveBayes(object):
                     probabilities[classValue] *= 0
         return probabilities
 
+    def has_model(self):
+        return self.statistical_model is not None
+
     def predict(self, input_vector):
         probs = self.calculate_class_probabilities(input_vector)
         lst = [(k, v) for k, v in probs.items()]
