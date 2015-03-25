@@ -39,15 +39,11 @@ while not done:
     pos = pygame.mouse.get_pos()
 
     for event in pygame.event.get():
-
-        if event.type == pygame.QUIT:
-            done = True
-
         if event.type == pygame.KEYDOWN:
-
+            if event.key == pygame.K_ESCAPE:
+                done = True
             if event.key == pygame.K_c:
                 naive_bayes_storage.clear()
-
             if event.key == pygame.K_1:
                 naive_bayes_storage.add_data_point(0, pos)
                 naive_bayes_storage.build_model()

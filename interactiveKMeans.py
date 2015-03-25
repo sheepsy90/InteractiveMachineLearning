@@ -9,7 +9,7 @@ WHITE = (190, 190, 190)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 GREY = (150, 150, 150)
-BLUE = (0, 135,255)
+BLUE = (0, 135, 255)
 YELLOW = (255, 255, 0)
 
 colour_by_class = {
@@ -52,12 +52,9 @@ while not done:
     pos = pygame.mouse.get_pos()
 
     for event in pygame.event.get():
-
-        if event.type == pygame.QUIT:
-            done = True
-
         if event.type == pygame.KEYDOWN:
-
+            if event.key == pygame.K_ESCAPE:
+                done = True
             if event.key == pygame.K_c:
                 k_mean_started = False
                 stable = False

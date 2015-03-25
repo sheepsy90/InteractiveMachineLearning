@@ -38,12 +38,9 @@ while not done:
     pos = pygame.mouse.get_pos()
 
     for event in pygame.event.get():
-
-        if event.type == pygame.QUIT:
-            done = True
-
         if event.type == pygame.KEYDOWN:
-
+            if event.key == pygame.K_ESCAPE:
+                done = True
             if event.key == pygame.K_0:
                 knn_storage.clear()
             if event.key == pygame.K_1:

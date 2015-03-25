@@ -1,3 +1,6 @@
+import math
+
+
 class KMeans():
 
     def __init__(self):
@@ -19,7 +22,7 @@ class KMeans():
         return self.data_points
 
     def get_centroids(self):
-        return self.centroids#
+        return self.centroids
 
     def set_new_centers(self, new_centroids):
         if str(new_centroids) == str(self.centroids):
