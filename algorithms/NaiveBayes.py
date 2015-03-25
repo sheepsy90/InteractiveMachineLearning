@@ -67,8 +67,6 @@ class NaiveBayes(object):
                     if cum > rnd_nr:
                         return element[0]
                 return lst[-1][0]
-
-        print lst
         return lst[0][0]
 
     def calculateProbability(self, x, mean, stdev):
