@@ -1,6 +1,6 @@
 import pygame
 import math
-from knn import KNN
+from algorithms.KNearestNeighbour import KNN
 
 #defining color variables
 BLACK = (0, 0, 0)

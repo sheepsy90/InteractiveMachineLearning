@@ -1,7 +1,6 @@
 from collections import Counter
 import math
 
-
 class KNN():
 
     def __init__(self, num_classes):
@@ -42,7 +41,6 @@ class KNN():
             return predicted_label, distances
         except:
             return None
-
 
     def get_data_points(self):
         return self.data_points
